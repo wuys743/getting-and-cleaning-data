@@ -51,7 +51,7 @@ names(finalData) <- gsub("-mean", "Mean", names(finalData))
 names(finalData) <- gsub("-std", "Std", names(finalData))
 
 
-# 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+## 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 library(dplyr)
 groupData <- finalData %>%
   group_by(subject, activity) %>%
