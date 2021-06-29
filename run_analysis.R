@@ -1,20 +1,20 @@
 ## 1. Merge the training and the test sets to create one data set.
 
 ##step 1: download zip file from website
-if(!file.exists("./data"))dir.create("./data")
+if(!file.exists("/Users/yushengwu/Downloads/data"))dir.create("/Users/yushengwu/Downloads/data")
 fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-download.file(fileUrl, destfile = "./data/projectData_getCleanData.zip")
+download.file(fileUrl, destfile = "/Users/yushengwu/Downloads/data/projectData_getCleanData.zip")
 
 ## step 2: unzip data
-listZip <- unzip("./data/projectData_getCleanData.zip", exdir = "./data")
+listZip <- unzip("/Users/yushengwu/Downloads/data/projectData_getCleanData.zip", exdir = "./data")
 
 ## step 3: load data into R
-train.x <- read.table("./data/UCI HAR Dataset/train/X_train.txt")
-train.y <- read.table("./data/UCI HAR Dataset/train/y_train.txt")
-train.subject <- read.table("./data/UCI HAR Dataset/train/subject_train.txt")
-test.x <- read.table("./data/UCI HAR Dataset/test/X_test.txt")
-test.y <- read.table("./data/UCI HAR Dataset/test/y_test.txt")
-test.subject <- read.table("./data/UCI HAR Dataset/test/subject_test.txt")
+train.x <- read.table("/Users/yushengwu/Downloads/data/UCI HAR Dataset/train/X_train.txt")
+train.y <- read.table("/Users/yushengwu/Downloads/data/UCI HAR Dataset/train/y_train.txt")
+train.subject <- read.table("/Users/yushengwu/Downloads/data/UCI HAR Dataset/train/subject_train.txt")
+test.x <- read.table("/Users/yushengwu/Downloads/data/UCI HAR Dataset/test/X_test.txt")
+test.y <- read.table("/Users/yushengwu/Downloads/data/UCI HAR Dataset/test/y_test.txt")
+test.subject <- read.table("/Users/yushengwu/Downloads/data/UCI HAR Dataset/test/subject_test.txt")
 
 ## step 4: merge train and test data
 trainData <- cbind(train.subject, train.y, train.x)
@@ -25,7 +25,7 @@ fullData <- rbind(trainData, testData)
 ## 2. Extract only the measurements on the mean and standard deviation for each measurement. 
 
 ## step 1: load feature name into R
-featureName <- read.table("./data/UCI HAR Dataset/features.txt", stringsAsFactors = FALSE)[,2]
+featureName <- read.table("/Users/yushengwu/Downloads/data/UCI HAR Dataset/features.txt", stringsAsFactors = FALSE)[,2]
 
 ## step 2: extract mean and standard deviation of each measurements
 featureIndex <- grep(("mean\\(\\)|std\\(\\)"), featureName)
@@ -57,5 +57,5 @@ groupData <- finalData %>%
   group_by(subject, activity) %>%
   summarise_each(funs(mean))
 
-write.table(groupData, "./Getting_and_Cleaning_data_Project/MeanData.txt", row.names = FALSE)
+write.table(groupData, "/Users/yushengwu/Downloads/MeanData.txt", row.names = FALSE)
 
